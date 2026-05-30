@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A polished Irish road signs study tool with shuffled decks, tricky sign practice, and a complete sign reference.">
+  <title>Irish Road Signs Study Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <main class="app-shell" id="mainContent">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Irish Driver Theory Practice</p>
+        <h1>Road Signs Study Tool</h1>
+        <p class="hero-copy">Shuffle through every sign, focus on common exam signs, or build your own tricky deck.</p>
+      </div>
+
+      <div class="hero-stats" aria-label="Study progress">
+        <p class="stat-label">Deck Progress</p>
+        <p class="stat-value" id="progressText">Loading...</p>
+        <div class="progress-track" aria-hidden="true">
+          <span class="progress-fill" id="progressFill"></span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="page-tabs" aria-label="Primary views">
+      <button class="tab-button" id="studyViewButton" type="button" aria-pressed="true">Study</button>
+      <button class="tab-button" id="allSignsViewButton" type="button" aria-pressed="false">All Signs</button>
+      <button class="tab-button" id="commonSignsViewButton" type="button" aria-pressed="false">Common Signs</button>
+    </nav>
+
+    <section class="dashboard" id="studyView" aria-labelledby="studyHeading">
+      <aside class="control-panel">
+        <div>
+          <p class="panel-kicker">Deck</p>
+          <h2 id="studyHeading">Choose your study set</h2>
+        </div>
+
+        <div class="deck-selector" role="group" aria-label="Study deck">
+          <button class="deck-button" id="allDeckButton" type="button" aria-pressed="true">
+            <span>All Signs</span>
+            <small id="allDeckCount">0 signs</small>
+          </button>
+          <button class="deck-button" id="commonDeckButton" type="button" aria-pressed="false">
+            <span>Most Common</span>
+            <small id="commonDeckCount">0 signs</small>
+          </button>
+          <button class="deck-button" id="trickyDeckButton" type="button" aria-pressed="false">
+            <span>Tricky</span>
+            <small id="trickyDeckCount">0 saved</small>
+          </button>
+        </div>
+
+        <div class="panel-note" aria-live="polite" id="deckSummary">No repeats until the deck is complete.</div>
+      </aside>
+
+      <section class="study-card" aria-live="polite">
+        <div class="sign-stage">
+          <button class="tricky-toggle" id="toggleTricky" type="button" hidden aria-pressed="false">Mark Tricky</button>
+          <img class="sign-image" id="signImage" alt="">
+          <p class="image-error" id="imageError" hidden></p>
+        </div>
+
+        <div class="answer-panel" id="answerPanel" hidden>
+          <p class="answer-label">Answer</p>
+          <p class="answer-text" id="answer"></p>
+        </div>
+
+        <div class="study-actions">
+          <button class="primary-action" id="showAnswer" type="button">Show Answer</button>
+          <button class="secondary-action" id="nextSign" type="button" hidden>Next Sign</button>
+          <button class="secondary-action" id="restartDeck" type="button" hidden>Shuffle Again</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="reference-view" id="galleryView" hidden aria-labelledby="referenceHeading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Reference</p>
+          <h2 id="referenceHeading">All signs in order</h2>
+        </div>
+        <p class="section-count" id="galleryCount">0 signs</p>
+      </div>
+      <div class="sign-grid" id="galleryGrid"></div>
+    </section>
+
+    <section class="reference-view" id="commonView" hidden aria-labelledby="commonHeading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Reference</p>
+          <h2 id="commonHeading">Common signs</h2>
+        </div>
+        <p class="section-count" id="commonCount">0 signs</p>
+      </div>
+      <div class="sign-grid featured-grid" id="commonGrid"></div>
+    </section>
+  </main>
+
+  <script src="signs-data.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

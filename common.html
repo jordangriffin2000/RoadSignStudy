@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A focused reference page for the most common Irish road signs.">
+  <title>Common Signs</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <main class="app-shell" id="mainContent">
+    <header class="hero compact-hero">
+      <div>
+        <p class="eyebrow">High-yield reference</p>
+        <h1>Common Signs</h1>
+        <p class="hero-copy">A curated list of signs that are especially useful to review before a test.</p>
+      </div>
+
+      <div class="hero-stats" aria-label="Common signs count">
+        <p class="stat-label">Common Set</p>
+        <p class="stat-value" id="count">Loading...</p>
+      </div>
+    </header>
+
+    <nav class="page-tabs" aria-label="Pages">
+      <a class="tab-link" href="index.html">Study</a>
+      <a class="tab-link" href="index.html#all-signs">All Signs</a>
+      <a class="tab-link active" href="index.html#common-signs" aria-current="page">Common Signs</a>
+    </nav>
+
+    <section class="reference-view" aria-labelledby="commonHeading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Reference</p>
+          <h2 id="commonHeading">Most common signs</h2>
+        </div>
+      </div>
+      <div class="sign-grid featured-grid" id="commonGrid"></div>
+    </section>
+  </main>
+
+  <script src="signs-data.js"></script>
+  <script src="common.js" defer></script>
+</body>
+</html>
