@@ -1,6 +1,7 @@
 const IMAGE_DIRECTORY = "Images";
 const SIGNS_ENDPOINT = "signs.json";
 const TRICKY_STORAGE_KEY = "irishRoadSigns.trickySigns";
+const THEME_STORAGE_KEY = "irishRoadSigns.theme";
 
 const COMMON_SIGN_NUMBERS = [
   23, 30, 139, 1, 9, 15, 131, 3, 11, 7, 62, 97, 117, 99, 106, 109,
@@ -26,7 +27,7 @@ const storage = {
   read(key, fallback = []) {
     try {
       const value = JSON.parse(localStorage.getItem(key) || "null");
-      return Array.isArray(value) ? value : fallback;
+      return value ?? fallback;
     } catch {
       return fallback;
     }
@@ -44,6 +45,7 @@ const storage = {
 const elements = {
   progressText: document.querySelector("#progressText"),
   progressFill: document.querySelector("#progressFill"),
+  themeToggle: document.querySelector("#themeToggle"),
   studyView: document.querySelector("#studyView"),
   galleryView: document.querySelector("#galleryView"),
   commonView: document.querySelector("#commonView"),
@@ -153,6 +155,26 @@ const updateCounts = () => {
   elements.commonDeckCount.textContent = `${state.commonRecords.length} signs`;
   elements.trickyDeckCount.textContent = `${state.trickyFiles.length} saved`;
   elements.galleryCount.textContent = `${state.records.length} signs`;
+};
+
+const applyTheme = (theme) => {
+  const isDark = theme === "dark";
+  document.body.dataset.theme = isDark ? "dark" : "light";
+  elements.themeToggle.textContent = isDark ? "Light Mode" : "Dark Mode";
+  elements.themeToggle.setAttribute("aria-pressed", String(isDark));
+};
+
+const initializeTheme = () => {
+  const savedTheme = storage.read(THEME_STORAGE_KEY, null);
+  const systemPrefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+  const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+  applyTheme(theme);
+};
+
+const toggleTheme = () => {
+  const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(nextTheme);
+  storage.write(THEME_STORAGE_KEY, nextTheme);
 };
 
 const updateDeckButtons = () => {
@@ -472,9 +494,11 @@ const bindEvents = () => {
   elements.nextSign.addEventListener("click", goToNextSign);
   elements.restartDeck.addEventListener("click", startDeck);
   elements.toggleTricky.addEventListener("click", toggleTricky);
+  elements.themeToggle.addEventListener("click", toggleTheme);
 };
 
 const initialize = async () => {
+  initializeTheme();
   bindEvents();
 
   try {
