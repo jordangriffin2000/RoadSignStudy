@@ -55,6 +55,7 @@ const elements = {
   allDeckButton: document.querySelector("#allDeckButton"),
   commonDeckButton: document.querySelector("#commonDeckButton"),
   trickyDeckButton: document.querySelector("#trickyDeckButton"),
+  allSignsFilter: document.querySelector("#allSignsFilter"),
   allDeckCount: document.querySelector("#allDeckCount"),
   commonDeckCount: document.querySelector("#commonDeckCount"),
   trickyDeckCount: document.querySelector("#trickyDeckCount"),
@@ -69,6 +70,7 @@ const elements = {
   restartDeck: document.querySelector("#restartDeck"),
   galleryGrid: document.querySelector("#galleryGrid"),
   galleryCount: document.querySelector("#galleryCount"),
+  excludeCommonFromStudy: document.querySelector("#excludeCommonFromStudy"),
   commonGrid: document.querySelector("#commonGrid"),
   commonCount: document.querySelector("#commonCount")
 };
@@ -129,6 +131,13 @@ const getActiveFiles = () => {
     return state.trickyFiles;
   }
 
+  if (elements.excludeCommonFromStudy.checked) {
+    const commonNumbers = new Set(COMMON_SIGN_NUMBERS);
+    return state.records
+      .filter((record) => !commonNumbers.has(record.number))
+      .map((record) => record.fileName);
+  }
+
   return state.records.map((record) => record.fileName);
 };
 
@@ -181,6 +190,7 @@ const updateDeckButtons = () => {
   elements.allDeckButton.setAttribute("aria-pressed", String(state.deckMode === "all"));
   elements.commonDeckButton.setAttribute("aria-pressed", String(state.deckMode === "common"));
   elements.trickyDeckButton.setAttribute("aria-pressed", String(state.deckMode === "tricky"));
+  elements.allSignsFilter.hidden = state.deckMode !== "all";
 };
 
 const updateTrickyDeck = () => {
@@ -263,6 +273,7 @@ const renderGallery = () => {
   });
 
   elements.galleryGrid.replaceChildren(fragment);
+  elements.galleryCount.textContent = `${state.records.length} signs`;
 };
 
 const renderCommonGallery = () => {
@@ -495,6 +506,11 @@ const bindEvents = () => {
   elements.restartDeck.addEventListener("click", startDeck);
   elements.toggleTricky.addEventListener("click", toggleTricky);
   elements.themeToggle.addEventListener("click", toggleTheme);
+  elements.excludeCommonFromStudy.addEventListener("change", () => {
+    if (state.deckMode === "all") {
+      startDeck();
+    }
+  });
 };
 
 const initialize = async () => {
