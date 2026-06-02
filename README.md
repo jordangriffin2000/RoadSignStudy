@@ -9,6 +9,7 @@ A responsive, browser-based study tool for learning Irish road signs. The app sh
 - Persistent tricky-sign practice powered by `localStorage`
 - Complete ordered sign reference
 - Dedicated common-sign reference page
+- Shuffled theory question practice with hidden answers
 - Responsive dashboard-style interface for mobile, tablet, and desktop
 - Accessible semantic HTML, keyboard-friendly controls, and high-contrast UI states
 
@@ -21,6 +22,7 @@ A responsive, browser-based study tool for learning Irish road signs. The app sh
 5. Use `Mark Tricky` to save difficult signs for later review.
 6. Select `Next Sign` to continue through the shuffled deck.
 7. Visit the `All Signs` or `Common Signs` views to review signs in order.
+8. Use the `Questions` page to test yourself on road rules and reveal answers only when ready.
 
 ## Technologies Used
 
@@ -34,16 +36,18 @@ A responsive, browser-based study tool for learning Irish road signs. The app sh
 
 ```text
 .
-├── Images/
-│   └── sign (...).png
-├── app.js
-├── common.html
-├── common.js
-├── index.html
-├── README.md
-├── signs-data.js
-├── signs.json
-└── styles.css
+|-- Images/
+|   `-- sign (...).png
+|-- app.js
+|-- common.html
+|-- common.js
+|-- index.html
+|-- questions.html
+|-- questions.js
+|-- README.md
+|-- signs-data.js
+|-- signs.json
+`-- styles.css
 ```
 
 ## Running Locally
@@ -65,7 +69,7 @@ http://localhost:8000
 ## Hosting With GitHub Pages
 
 1. Create a new GitHub repository.
-2. Add the project files to the repository, including `index.html`, `styles.css`, `app.js`, `signs.json`, `common.html`, `common.js`, and the `Images` folder.
+2. Add the project files to the repository, including `index.html`, `styles.css`, `app.js`, `signs.json`, `signs-data.js`, `questions.html`, `questions.js`, and the `Images` folder.
 3. Commit and push the files to GitHub.
 4. Open the repository on GitHub.
 5. Go to `Settings` > `Pages`.

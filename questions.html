@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Irish driving theory question practice with hidden answers and shuffled review.">
+  <title>Driving Theory Questions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <main class="app-shell" id="mainContent">
+    <header class="hero compact-hero">
+      <div>
+        <p class="eyebrow">Irish Driver Theory Practice</p>
+        <h1>Theory Questions</h1>
+        <p class="hero-copy">Test yourself on core road rules, markings, crossings, lights, and speed limits.</p>
+      </div>
+
+      <div class="hero-stats" aria-label="Question progress">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark Mode</button>
+        <p class="stat-label">Question Progress</p>
+        <p class="stat-value" id="questionProgress">Loading...</p>
+        <div class="progress-track" aria-hidden="true">
+          <span class="progress-fill" id="questionProgressFill"></span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="page-tabs" aria-label="Primary views">
+      <a class="tab-link" href="index.html">Study</a>
+      <a class="tab-link" href="index.html#all-signs">All Signs</a>
+      <a class="tab-link" href="index.html#common-signs">Common Signs</a>
+      <a class="tab-link active" href="questions.html" aria-current="page">Questions</a>
+    </nav>
+
+    <section class="question-shell" aria-live="polite">
+      <article class="question-card">
+        <div class="deck-selector question-deck-selector" role="group" aria-label="Question deck">
+          <button class="deck-button" id="allQuestionsDeck" type="button" aria-pressed="true">
+            <span>All Questions</span>
+            <small id="allQuestionsCount">0 questions</small>
+          </button>
+          <button class="deck-button" id="trickyQuestionsDeck" type="button" aria-pressed="false">
+            <span>Tricky</span>
+            <small id="trickyQuestionsCount">0 saved</small>
+          </button>
+        </div>
+
+        <div class="question-panel">
+          <button class="tricky-toggle" id="toggleTrickyQuestion" type="button" aria-pressed="false">Mark Tricky</button>
+          <p class="eyebrow" id="questionNumber">Question</p>
+          <h2 class="question-text" id="questionText">Loading...</h2>
+        </div>
+
+        <div class="answer-panel" id="questionAnswerPanel" hidden>
+          <p class="answer-label">Answer</p>
+          <div class="question-answer" id="questionAnswer"></div>
+        </div>
+
+        <div class="study-actions">
+          <button class="primary-action" id="showQuestionAnswer" type="button">Show Answer</button>
+          <button class="secondary-action" id="nextQuestion" type="button" hidden>Next Question</button>
+          <button class="secondary-action" id="restartQuestions" type="button" hidden>Shuffle Again</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="questions.js" defer></script>
+</body>
+</html>

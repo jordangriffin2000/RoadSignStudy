@@ -329,8 +329,14 @@ const setView = (view) => {
 };
 
 const setInitialView = () => {
-  if (window.location.hash) {
-    history.replaceState(null, "", window.location.pathname);
+  if (window.location.hash === "#all-signs") {
+    setView("gallery");
+    return;
+  }
+
+  if (window.location.hash === "#common-signs") {
+    setView("common");
+    return;
   }
 
   setView("study");
